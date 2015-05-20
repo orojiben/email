@@ -10,7 +10,7 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
 
 smtpTransport.sendMail({
    from: "My Name <orojiben@gmail.com>", // sender address
-   to: "Your Name <nkuajhmono@gmail.com>", // comma separated list of receivers
+   to: "Your Name <nkaujhmono@gmail.com>", // comma separated list of receivers
    subject: "Hello ✔", // Subject line
    text: "Hello world ✔" // plaintext body
 }, function(error, response){
