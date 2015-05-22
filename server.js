@@ -5,11 +5,12 @@ var app=express();
 /*------------------Routing Started ------------------------*/
 
 app.get('/',function(req,res){
-res.sendfile('index.html');
+	//res.sendfile('index.html');
 });
-app.get('/send',function(req,res){
+app.post('/send',function(req,res){
 	console.log("send");
-	smtpTransport.sendMail({// sender address
+	console.log('body: ' + JSON.stringify(req.body));
+	/*smtpTransport.sendMail({// sender address
 	   to: "Your Name <"+req.query.user_r+">", // comma separated list of receivers
 	   subject: "Welcome to www.nkaujhmono.com", // Subject line
 	   text: "Link for Login http://www.nkaujhmono.com/ok?x="+req.query.x+"&user="+req.query.user_r // plaintext body
@@ -20,7 +21,7 @@ app.get('/send',function(req,res){
 		   console.log("Message sent: " + response);
 		   res.end("ok_ok");
 	   }
-	});
+	});*/
 	
 });
 
