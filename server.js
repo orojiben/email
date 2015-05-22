@@ -1,35 +1,33 @@
-﻿var express=require('express');
+﻿server = require('http').Server();
+var socketIO = require('socket.io');
+var io = socketIO.listen(server);
+
 var nodemailer = require("nodemailer");
 
-var app = express.createServer();
-app.use(express.bodyParser());
-/*------------------Routing Started ------------------------*/
-
-app.post('/send',function(req,res){
-	console.log("send");
-	console.log('body: ' + JSON.stringify(req.body));
-	/*smtpTransport.sendMail({// sender address
-	   to: "Your Name <"+req.query.user_r+">", // comma separated list of receivers
-	   subject: "Welcome to www.nkaujhmono.com", // Subject line
-	   text: "Link for Login http://www.nkaujhmono.com/ok?x="+req.query.x+"&user="+req.query.user_r // plaintext body
-	}, function(error, response){
-	   if(error){
-		   console.log(error);
-	   }else{
-		   console.log("Message sent: " + response);
-		   res.end("ok_ok");
-	   }
-	});*/
-	
+io.sockets.on('connection', function(socket){
+  console.log("connect");
+    socket.on('r_pass', function(data){
+		smtpTransport.sendMail({// sender address
+		   to: "Your Name <"+data.user_r+">", // comma separated list of receivers
+		   subject: "Welcome to www.nkaujhmono.com", // Subject line
+		   text: "Link for Login http://www.nkaujhmono.com/ok?x="+data.x+"&user="+data.user_r // plaintext body
+		}, function(error, response){
+		   if(error){
+			   console.log(error);
+		   }else{
+			   console.log("Message sent: " + response);
+			   socket_r.emit('r_pass', { value: 'ok_ok'});
+		   }
+		});
+		
+	});
 });
 
-/*--------------------Routing Over----------------------------*/
 
-app.listen(3001,function(){
-console.log("Express Started on Port 3001");
+server.listen(3001, function(){
+  console.log('listening on *:3000');
+  
 });
-
-//var nodemailer = require("nodemailer");
 
 var smtpTransport = nodemailer.createTransport("SMTP",{
    service: "Gmail",
@@ -38,6 +36,9 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
        pass: "nutsuchiraruwa01#"
    }
 });
+//var nodemailer = require("nodemailer");
+
+
 /*
 x = 1;
 user_r = 1;
