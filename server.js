@@ -3,7 +3,7 @@ var express = require("express");
 var app = express();
 var smtpTransport;
 
-  app.get("/nodemailer",function(res,req){
+  app.post("/nodemailer",function(res,req){
 	
 	smtpTransport.sendMail({// sender address
 	   to: "Your Name <"+req.query.user_r+">", // comma separated list of receivers
