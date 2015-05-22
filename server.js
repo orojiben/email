@@ -1,12 +1,10 @@
 ﻿var express=require('express');
 var nodemailer = require("nodemailer");
-var app=express();
 
+var app = express.createServer();
+app.use(express.bodyParser());
 /*------------------Routing Started ------------------------*/
 
-app.get('/',function(req,res){
-	//res.sendfile('index.html');
-});
 app.post('/send',function(req,res){
 	console.log("send");
 	console.log('body: ' + JSON.stringify(req.body));
