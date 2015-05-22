@@ -8,7 +8,7 @@ app.get('/',function(req,res){
 res.sendfile('index.html');
 });
 app.get('/send',function(req,res){
-	
+	console.log("send");
 	smtpTransport.sendMail({// sender address
 	   to: "Your Name <"+req.query.user_r+">", // comma separated list of receivers
 	   subject: "Welcome to www.nkaujhmono.com", // Subject line
@@ -27,7 +27,7 @@ app.get('/send',function(req,res){
 /*--------------------Routing Over----------------------------*/
 
 app.listen(3001,function(){
-console.log("Express Started on Port 3000");
+console.log("Express Started on Port 3001");
 });
 
 //var nodemailer = require("nodemailer");
